@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html>
+<head>
+     <link href="https://fonts.googleapis.com/css2?family=Indie+Flower&family=Lobster&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>Index</title>
+</head>
+<body>
+
+
+<style>
+
+
+
+
+.majhkhan{display:grid;
+place-items:center;
+}
+body{background:#1B1B1B;font-family: var(--font);
+}
+
+.box{border:1px solid black;
+border-radius:10px;
+background:#292929;
+font-size:100px;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+.container{display:grid;
+grid-gap:2px;
+
+grid-template-columns:280px 280px 280px;
+grid-template-rows:280px 280px 280px;
+font-weight:900;
+font-size:40px;
+grid-auto-rows:190px;
+text-align:center;
+
+
+
+
+}
+.player{margin:10px;}
+
+p{margin:1px;}
+
+button{
+      border-top:var(--by) solid #218CFD ;
+      border-bottom:var(--by) solid #EB6262;
+      border-left:var(--bx) solid transparent;
+      border-right:var(--bx) solid transparent;
+      outline:0;
+      padding:20px;
+      border-radius:100px ;
+      margin-right:auto;
+      margin-left:auto;
+      margin-top: 40px;
+      width:450px;
+      background:transparent;
+      align-items:center;
+      justify-content:center;
+}
+.button{
+    display:flex;
+    margin:auto;
+    width:840px;
+    
+}
+#btn{
+   transition:1s;
+
+}
+
+img{
+    transform:rotate(0deg);
+    animation:image 1s ;
+    transition:1s;
+    width:90px;
+}
+
+
+.cent{display:flex;
+     align-items:center;
+     justify-content:center; 
+     }
+     
+     select{
+     font-family:var(--font);
+     border-top:var(--by) solid #218CFD ;
+      border-bottom:var(--by) solid #EB6262;
+      border-left:1px solid transparent;
+      border-right:1px solid transparent;
+      outline:0;
+      padding:40px;
+      border-radius:10px;
+      width:450px;
+      background:transparent;
+      color:white;
+      font-size:50px;
+    
+     }
+     
+     
+  
+   .select{
+   
+   display:flex;
+   align-items:center;
+   justify-content:center;
+   
+   
+   }
+
+     :root {
+    
+     --by:6px;
+     --bx:2.5px;
+     --font:'Indie Flower', cursive;
+
+;
+     
+     
+     }
+
+
+
+</style>
+<p>player 1=x,</p> <br/>
+<p>player 2=o,</p><br/>
+<div id="display"> </div>
+ <div class="select">
+ <select id="sl" onchange="selected()" >
+ <option value="2">2 player</option>
+ <option value="c"> computer</option>
+ </select>
+ </div>
+<div class="player">player1</div>
+<div class="cent">
+<div class="container">
+   
+  <div id="1" class="1 box"></div>
+    <div class="2 box"></div>
+     <div class="3 box"></div>
+     <div class="4 box"></div>
+     <div class="5 box"></div>
+     <div class="6 box"></div>
+     <div class="7 box"></div>
+     <div class="8 box"></div>
+     <div class="9 box"></div>
+ 
+ 
+ </div>
+ 
+
+ 
+ </div>
+  
+   <div class="button"> <button  type="button" id="btn" onclick="selected()"> <img id="png" src="file:///storage/emulated/0/dcim/screenshots/reset.png"/> </button>
+ </div>
+</body>
+</html>
+<script>
+var rot= 0;
+var back=0;
+
+function selected(){
+
+rot-=90;
+back-=45;
+document.getElementById("png").style.cssText= "transform:rotate("+rot+"deg);";
+
+document.getElementById("btn").style.cssText="border-bottom:var(--by) solid #218CFD ;border-top:var(--by) solid #EB6262;";
+
+
+setTimeout(function(){
+
+document.getElementById("png").style.cssText= "transform:rotate("+back+"deg);";
+
+
+document.getElementById("btn").style.cssText="border-top:var(--by) solid #218CFD ;border-bottom:var(--by) solid #EB6262;";
+
+
+},1000);
+
+setTimeout(function(){
+
+
+
+},800);
+var val=document.querySelector(".player").innerHTML;
+
+if(val=="player2" || val=="Computer"){
+
+document.querySelector(".player").innerHTML="player1";
+
+
+}; 
+
+
+var ar = [0,2,6,8];
+var cn= ar[Math.floor(Math.random()*4)];
+
+
+
+
+for (i=0; i<=9; i++){
+
+if(document.getElementById("sl").value=="c"){
+document.getElementsByClassName("box")[cn].innerHTML="O";
+};
+document.getElementsByClassName("box")[i].innerHTML="";
+
+};
+
+
+
+ 
+
+};
+
+
+
+document.querySelector(".container").addEventListener("click",function(e){
+
+
+
+
+
+var vl =document.getElementById("sl").value;
+
+if(vl==2){
+
+var val=document.querySelector(".player").innerHTML;
+
+var txt= e.target.innerHTML;
+
+
+
+if(val=="player1" && txt==""){
+
+
+
+e.target.innerHTML="X";
+
+
+}else if(val=="player2" && txt==""){
+
+
+
+e.target.innerHTML="O";
+
+
+
+
+}
+if(val=="player1" ){
+
+
+document.querySelector(".player").innerHTML="player2";
+
+
+
+
+
+
+
+}else if(val=="player2"){
+
+document.querySelector(".player").innerHTML="player1";
+
+
+}; 
+
+
+
+
+}else if(vl=="c"){
+
+
+
+var val=document.querySelector(".player").innerHTML;
+
+
+
+
+var txt= e.target.innerHTML;
+
+
+if(val=="player1" && txt==""){
+
+
+
+e.target.innerHTML="X";
+
+var mp_ar = [];
+
+
+
+
+for(var check=0; check<9; check++){
+
+var OX_val = 
+document.getElementsByClassName("box")[check].innerHTML;
+
+if(OX_val=="X"){
+
+document.getElementsByClassName("box")[check].style.cssText="color:#F06464;";
+
+
+};
+
+
+mp_ar.push(OX_val);
+
+};
+
+
+var one = mp_ar[0];
+var two = mp_ar[1];
+var thre = mp_ar[2];
+var fur = mp_ar[3];
+var fiv = mp_ar[4];
+var six = mp_ar[5];
+var svn = mp_ar[6];
+var eit = mp_ar[7];
+var nin = mp_ar[8];
+
+if(one=="O" && svn=="O" && fur==""){
+
+document.getElementsByClassName("box")[3].innerHTML="O";
+
+}else if(svn=="O" && nin=="O" && eit==""){
+
+document.getElementsByClassName("box")[7].innerHTML="O";
+
+}else if(thre=="O" && nin=="O" && six==""){
+
+document.getElementsByClassName("box")[5].innerHTML="O";
+
+}else if(one=="O" && thre=="O" && two==""){
+
+document.getElementsByClassName("box")[1].innerHTML="O";
+
+}else if(two=="X" && fiv=="X" && eit=="" ){
+
+document.getElementsByClassName("box")[7].innerHTML="O";
+
+}else if(fur=="X" && fiv=="X" && six==""){
+
+document.getElementsByClassName("box")[5].innerHTML="O";
+
+}else if(eit=="X" && fiv=="X" && two==""){
+
+document.getElementsByClassName("box")[1].innerHTML="O";
+
+}else if(six=="X" && fiv=="X" && fur==""){
+
+document.getElementsByClassName("box")[3].innerHTML="O";
+
+
+}else if(one=="O" && thre=="O" && two==""){
+
+
+document.getElementsByClassName("box")[1].innerHTML="O";
+
+
+}else if(one=="X" && fiv=="X" && nin==""){
+
+document.getElementsByClassName("box")[8].innerHTML="O";
+
+}else if(svn=="X" && fiv=="X" && thre==""){
+
+document.getElementsByClassName("box")[2].innerHTML="O";
+
+}else if(nin=="X" && fiv=="X" && one==""){
+
+document.getElementsByClassName("box")[0].innerHTML="O";
+
+}else if(thre=="X" && fiv=="X" &&  svn==""){
+
+document.getElementsByClassName("box")[6].innerHTML="O";
+
+}else if(one=="O" && nin=="O" && fiv==""){
+
+document.getElementsByClassName("box")[4].innerHTML="O";
+
+
+}else if(svn=="O" && thre=="O" && fiv==""){
+
+document.getElementsByClassName("box")[4].innerHTML="O";
+
+}else if(two=="X" && fur=="X" && nin==""){
+
+document.getElementsByClassName("box")[8].innerHTML="O";
+ 
+}else {
+
+corner();
+
+};
+
+
+
+
+function corner(){
+
+
+var ar = [0,2,6,8];
+
+
+
+
+for(p=0; p< ar.length; p++){
+
+
+var ind  = ar[p];
+
+var tr = document.getElementsByClassName("box")[ind].innerHTML;
+
+
+if(tr==""){
+
+document.getElementsByClassName("box")[ind].innerHTML="O";
+
+
+break;
+
+
+
+
+
+
+}
+
+
+};
+
+
+
+
+}; 
+
+
+
+document.querySelector(".player").innerHTML="player1";
+
+
+
+
+};
+
+
+
+
+
+};
+
+
+for(var check=0; check<9; check++){
+
+var OX_val = 
+document.getElementsByClassName("box")[check].innerHTML;
+
+if(OX_val=="X"){
+
+document.getElementsByClassName("box")[check].style.cssText="color:#F06464;";
+
+
+}else {
+
+document.getElementsByClassName("box")[check].style.cssText="color:#55B9FE;";
+
+};
+
+
+
+
+};
+
+
+
+
+
+
+var val_1 =document.getElementsByClassName("box")[0].innerHTML;
+var val_2 = document.getElementsByClassName("box")[1].innerHTML;
+var val_3 = document.getElementsByClassName("box")[2].innerHTML;
+var val_4 = document.getElementsByClassName("box")[3].innerHTML;
+var val_5 = document.getElementsByClassName("box")[4].innerHTML;
+var val_6 = document.getElementsByClassName("box")[5].innerHTML;
+var val_7 = document.getElementsByClassName("box")[6].innerHTML;
+var val_8 = document.getElementsByClassName("box")[7].innerHTML;
+var val_9 = document.getElementsByClassName("box")[8].innerHTML;
+
+
+if(val_1==val_5 && val_5==val_9 && val_1=="O" &&  val_5=="O" && val_9=="O" || val_1=="X" && val_5=="X" && val_9=="X"){
+
+if(vl==2 && val_1=="X" && val_5=="X" && val_9=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_1=="O" && val_5=="O" && val_9=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_1=="X" && val_5=="X" && val_9=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_1=="O" && val_5=="O" && val_9=="O"){
+
+alert("computer wins 🥰 ");
+
+};
+
+setTimeout(selected,100);
+
+
+}else if(val_3==val_5 && val_5==val_7 && val_3=="O" &&  val_5=="O" && val_7=="O" || val_3=="X" && val_5=="X" && val_7=="X"){
+
+
+if(vl==2 && val_3=="X" && val_5=="X" && val_7=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_3=="O" && val_5=="O" && val_7=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_3=="X" && val_5=="X" && val_7=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_3=="O" && val_5=="O" && val_7=="O"){
+
+alert("computer wins 🥰 ");
+
+};
+
+
+setTimeout(selected,1000);
+
+
+}else if(val_1==val_4 && val_4==val_7 && val_1=="O" &&  val_4=="O" && val_7=="O" || val_1=="X" && val_4=="X" && val_7=="X"){
+
+
+
+if(vl==2 && val_1=="X" && val_4=="X" && val_7=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_1=="O" && val_4=="O" && val_7=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_1=="X" && val_4=="X" && val_7=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_1=="O" && val_4=="O" && val_7=="O"){
+
+alert("computer wins 🥰 ");
+
+};
+
+setTimeout(selected,1000);
+
+}else if(val_2==val_5 && val_5==val_8 && val_2=="O" &&  val_5=="O" && val_8=="O" || val_2=="X" && val_5=="X" && val_8=="X"){
+
+
+if(vl==2 && val_2=="X" && val_5=="X" && val_8=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_2=="O" && val_5=="O" && val_8=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_2=="X" && val_5=="X" && val_8=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_2=="O" && val_5=="O" && val_8=="O"){
+
+alert("computer wins 🥰 ");
+
+};
+
+
+setTimeout(selected,1000);
+
+}else if(val_3==val_6 && val_6==val_9 && val_3=="O" &&  val_6=="O" && val_9=="O" || val_3=="X" && val_6=="X" && val_9=="X"){
+
+
+
+if(vl==2 && val_3=="X" && val_6=="X" && val_9=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_3=="O" && val_6=="O" && val_9=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_3=="X" && val_6=="X" && val_9=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_3=="O" && val_6=="O" && val_8=="O"){
+
+alert("computer wins 🥰 ");
+
+};
+
+setTimeout(selected,1000);
+
+}else if(val_1==val_2 && val_2==val_3 && val_1=="O" &&  val_2=="O" && val_3=="O" || val_1=="X" && val_2=="X" && val_3=="X"){
+
+
+if(vl==2 && val_1=="X" && val_2=="X" && val_3=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_1=="O" && val_2=="O" && val_3=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_1=="X" && val_2=="X" && val_3=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_1=="O" && val_2=="O" && val_3=="O"){
+
+alert("computer wins 🥰 ");
+
+};
+
+setTimeout(selected,1000);
+}else if(val_4==val_5 && val_5==val_6 && val_4=="O" &&  val_5=="O" && val_6=="O" || val_4=="X" && val_5=="X" && val_6=="X"){
+
+
+if(vl==2 && val_4=="X" && val_5=="X" && val_6=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_4=="O" && val_5=="O" && val_6=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_4=="X" && val_5=="X" && val_6=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_4=="O" && val_5=="O" && val_6=="O"){
+
+alert("computer wins 🥰 ");
+
+};
+
+setTimeout(selected,1000);
+
+}else if(val_7==val_8 && val_7==val_9 && val_7=="O" &&  val_8=="O" && val_9=="O" || val_7=="X" && val_8=="X" && val_9=="X"){
+
+
+if(vl==2 && val_7=="X" && val_8=="X" && val_9=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl==2 && val_7=="O" && val_8=="O" && val_9=="O"){
+
+alert("player2 wins");
+
+}else if(vl=="c" && val_7=="X" && val_8=="X" && val_9=="X"){
+
+alert("player1 wins");
+
+
+}else if(vl=="c" && val_7=="O" && val_8=="O" && val_9=="O"){
+
+alert("computer wins 🥰 ");
+
+}
+
+setTimeout(selected,1000);
+
+}else if(val_1.length==1 && val_2.length==1 && val_3.length==1 && val_4.length==1 && val_5.length==1 && val_6.length==1 && val_7.length==1 && val_8.length==1 && val_9.length==1){ alert("tie");};
+
+
+});
+
+
+
+
+
+
+
+
+</script>
